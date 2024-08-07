@@ -1,13 +1,12 @@
+#include  "utils/headers/test.h"
 #include <mpi.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
 
 void bitonic_sort(int *data, int start, int length, int direction);
 void bitonic_merge(int *data, int start, int length, int direction);
 void exchange(int *a, int *b);
 
 int main(int argc, char** argv) {
+    int seeds[] = SEEDS;
     int rank, size, n, i;
     int *data = NULL;
     int local_n;
@@ -19,7 +18,7 @@ int main(int argc, char** argv) {
 
     if (rank == 0) {
         data = (int*) malloc(INST_SIZE*sizeof(int));
-        gen_inst(2120934,data);
+        new_instance(data,seeds[0]);
     }
 
     // Broadcast the number of elements to all processors
@@ -40,6 +39,7 @@ int main(int argc, char** argv) {
     // Perform the bitonic merge across processes
     for (i = 2; i <= size; i <<= 1) {
         for (int j = i >> 1; j > 0; j >>= 1) {
+            printf("%d-%d",i,j);
             int partner = rank ^ j;
             if (partner < size) {
                 int *recv_data = (int*)malloc(local_n * sizeof(int));

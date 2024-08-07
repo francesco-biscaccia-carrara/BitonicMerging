@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../headers/test.h"
 
 int new_instance(int* data, int seed){
     if(data == NULL || seed < 0) return 1;

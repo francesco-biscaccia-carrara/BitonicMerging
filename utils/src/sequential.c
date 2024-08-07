@@ -1,4 +1,4 @@
-#include "sequential.h"
+#include "../headers/sequential.h"
 
 void merge(int *array, int start, int mid, int end) {
     int i, j, k;

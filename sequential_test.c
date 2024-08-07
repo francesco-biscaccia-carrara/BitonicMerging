@@ -1,5 +1,5 @@
-#include "utils/sequential.h"
-#include "utils/test.h"
+#include "utils/headers/sequential.h"
+#include "utils/headers/test.h"
 
 
 int main(void) {

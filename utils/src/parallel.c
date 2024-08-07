@@ -1,4 +1,4 @@
-#include "parallel.h"
+#include "../headers/parallel.h"
 
 void swap(int *a, int *b) {
     int temp = *a;
