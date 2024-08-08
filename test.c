@@ -1,5 +1,5 @@
-#include "utils/parallel.h"
-#include "utils/test.h"
+#include "utils/headers/parallel.h"
+#include "utils/headers/test.h"
 
 
 int main(void) {
@@ -12,7 +12,6 @@ int main(void) {
 
         bitonic_sort(data,0,INST_SIZE-1,1);
 
-    
         #if DEBUG == 1 
             printf("CHECKING INTEGRITY...\n");
             if(check_integrity(data,INST_SIZE)) return 1;
@@ -20,7 +19,7 @@ int main(void) {
         end = clock();
         free(data);
         printf("Elapsed time: %ju -%ju = %ju ticks\n",end,start,end-start);
-        printf("Elapsed time: %8.6f seconds == %8.6e seconds \n",(double) (end-start)/CLOCKS_PER_SEC,(double)(end-start)/CLOCKS_PER_SEC);
+        printf("Elapsed time: %8.6f seconds = %8.6e seconds \n",(double) (end-start)/CLOCKS_PER_SEC,(double)(end-start)/CLOCKS_PER_SEC);
     }
     return 0;
 }

@@ -1,6 +1,6 @@
 #include "../headers/parallel.h"
 
-void swap(int *a, int *b) {
+void swap(int* a, int* b) {
     int temp = *a;
     *a = *b;
     *b = temp;
@@ -20,12 +20,12 @@ void bitonic_merge(int* array, int start, int end, int direction) {
     }
 }
 
-void bitonic_sort(int *array, int start, int end, int direction) {
+void bitonic_sort(int* array, int start, int end, int direction) {
     if (start < end) {
         int mid = (start + end) / 2;
 
         bitonic_sort(array, start, mid, ASCENDING);
-        bitonic_sort(array, mid + 1, end, !ASCENDING);
+        bitonic_sort(array, mid + 1, end, DESCENDING);
         bitonic_merge(array, start, end, direction);
     }
 }
