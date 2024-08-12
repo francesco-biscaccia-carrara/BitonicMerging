@@ -8,5 +8,5 @@
 
 extern void bitonic_sort(int* array, int start, int end, int direction);
 extern void bitonic_merge(int* array, int start, int end, int direction);
-extern void swap(int* a, int* b);
+extern void reverse_array(int* array, int size);
 #endif

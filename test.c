@@ -1,25 +1,52 @@
-#include "utils/headers/parallel.h"
-#include "utils/headers/test.h"
+#include <mpi.h>
+#include <stdio.h>
 
+int main(int argc, char* argv[]) {
+    int rank, size;
+    int tag = 0;
+    MPI_Status status;
 
-int main(void) {
-    int seeds[] = SEEDS;
-    for(int i=0;seeds[i]>0;i++){
-        uintmax_t start,end;
-        int* data = (int*) malloc(INST_SIZE*sizeof(int));
-        new_instance(data,seeds[i]);
-        start = clock();
+    // Initialize the MPI environment
+    MPI_Init(&argc, &argv);
 
-        bitonic_sort(data,0,INST_SIZE-1,1);
+    // Get the rank and size
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-        #if DEBUG == 1 
-            printf("CHECKING INTEGRITY...\n");
-            if(check_integrity(data,INST_SIZE)) return 1;
-        #endif
-        end = clock();
-        free(data);
-        printf("Elapsed time: %ju -%ju = %ju ticks\n",end,start,end-start);
-        printf("Elapsed time: %8.6f seconds = %8.6e seconds \n",(double) (end-start)/CLOCKS_PER_SEC,(double)(end-start)/CLOCKS_PER_SEC);
+    int N = 16;
+
+    // Ensure that the number of processes matches the problem size
+    if (size != N) {
+        if (rank == 0) {
+            printf("This program requires exactly %d MPI processes.\n", N);
+        }
+        MPI_Finalize();
+        return 1;
     }
+
+    int data = rank;  // Example data, could be any meaningful value
+
+    for (int i = N >> 1; i >= 1; i >>= 1) {
+        int partner;
+        if (rank % (i << 1) < i) {
+            partner = rank + i;
+        } else {
+            partner = rank - i;
+        }
+
+        // Perform both send and receive operations
+        MPI_Sendrecv(&data, 1, MPI_INT, partner, tag,
+                     &data, 1, MPI_INT, partner, tag,
+                     MPI_COMM_WORLD, &status);
+
+        printf("%d) Process %d exchanged data with process %d.\n", i, rank, partner);
+        fflush(stdout);  // Flush the output buffer to ensure immediate printing
+
+        // Synchronize processes to ensure all processes have finished the current iteration
+        MPI_Barrier(MPI_COMM_WORLD);
+    }
+
+    // Finalize the MPI environment
+    MPI_Finalize();
     return 0;
 }

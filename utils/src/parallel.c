@@ -6,6 +6,11 @@ void swap(int* a, int* b) {
     *b = temp;
 }
 
+void reverse_array(int* array, int size) {
+    for (int i = 0; i < size/2; i++) swap(&array[i],&array[size - 1 - i]);
+}
+
+
 void bitonic_merge(int* array, int start, int end, int direction) {
     if (start < end) {
         int mid = (end - start + 1) / 2;
@@ -15,6 +20,7 @@ void bitonic_merge(int* array, int start, int end, int direction) {
                 swap(&array[i], &array[i + mid]);
             }
         }
+
         bitonic_merge(array, start, start + mid - 1, direction);
         bitonic_merge(array, start + mid, end, direction);
     }

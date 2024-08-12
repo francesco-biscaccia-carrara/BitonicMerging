@@ -6,12 +6,13 @@
 #include <stdint.h>
 #include <time.h>
 #include <math.h>
+#include <string.h>
 
 #ifndef DEBUG
-#define DEBUG 0
+#define DEBUG 1
 #endif
 
-#define INST_SIZE 8
+#define INST_SIZE 16
 //33554432 -- 2^25 
 //67108864 -- 2^26
 //134217728 -- 2^27
