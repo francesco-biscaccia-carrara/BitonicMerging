@@ -38,3 +38,5 @@ void bitonic_sort(int* array, int start, int end, int direction) {
 
 
 
+
+

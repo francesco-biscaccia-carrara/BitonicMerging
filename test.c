@@ -30,14 +30,15 @@ int main(int argc, char* argv[]) {
         int partner;
         if (rank % (i << 1) < i) {
             partner = rank + i;
+             MPI_Sendrecv(&data, 1, MPI_INT, partner, tag,
+                     &data, 1, MPI_INT, partner, tag,
+                     MPI_COMM_WORLD, &status);
         } else {
             partner = rank - i;
         }
 
         // Perform both send and receive operations
-        MPI_Sendrecv(&data, 1, MPI_INT, partner, tag,
-                     &data, 1, MPI_INT, partner, tag,
-                     MPI_COMM_WORLD, &status);
+       
 
         printf("%d) Process %d exchanged data with process %d.\n", i, rank, partner);
         fflush(stdout);  // Flush the output buffer to ensure immediate printing

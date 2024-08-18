@@ -24,7 +24,7 @@ int main(void) {
         free(data);
         printf("SEED: %d\n",seeds[i]);
         printf("Elapsed time: %ju -%ju = %ju ticks\n",end,start,end-start);
-        printf("Elapsed time: %8.6f seconds = %8.6e seconds \n",(double) (end-start)/CLOCKS_PER_SEC,(double)(end-start)/CLOCKS_PER_SEC);
+        printf("Elapsed time: %8.6f seconds = %8.6e seconds \n",(double) (end-start)/CLOCKS_PER_SEC, (double)(end-start)/CLOCKS_PER_SEC);
     }
     return 0;
 }

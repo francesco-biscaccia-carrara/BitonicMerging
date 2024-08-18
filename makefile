@@ -18,10 +18,10 @@ TARGET_PAR = test_par
 all: $(TARGET_SEQ) $(TARGET_PAR) clean
 
 $(TARGET_SEQ): $(SEQ_OBJS)
-	$(CC) $(SEQ_OBJS) -o $(TARGET_SEQ) -O3 
+	$(CC) $(SEQ_OBJS) -o $(TARGET_SEQ) -O3 -lm
 
 $(TARGET_PAR): $(PAR_OBJS)
-	$(MPI) $(PAR_OBJS) -o $(TARGET_PAR) -O3 
+	$(MPI) $(PAR_OBJS) -o $(TARGET_PAR) -O3 -lm
 
 sequential_test.o: sequential_test.c
 	$(CC) -c sequential_test.c -o sequential_test.o
