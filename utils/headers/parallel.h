@@ -3,10 +3,12 @@
 
 #include "test.h"
 
-#define ASCENDING 1
-#define DESCENDING 0
+extern void merge_take_first_half(int *local_array, int *temp, int local_n);
+extern void merge_take_second_half(int *local_array, int *temp, int local_n); 
 
-extern void bitonic_sort(int* array, int start, int end, int direction);
-extern void bitonic_merge(int* array, int start, int end, int direction);
-extern void reverse_array(int* array, int size);
+#pragma region Parallel_Utils
+extern int window_id_even(int rank, int l);
+extern int jth_bit_rank_zero(int rank, int j);
+#pragma endregion
+
 #endif

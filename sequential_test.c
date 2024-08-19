@@ -3,11 +3,15 @@
 
 
 int main(void) {
+    #if !DEBUG
+        printf("----%d-----\n",INST_SIZE);
+    #endif
+
     int seeds[] = SEEDS;
-    for(int i=0;seeds[i]>0;i++){
+    for(int seed_index = 0; seeds[seed_index] > 0; seed_index++){
         uintmax_t start,end;
         int* data = (int*) malloc(INST_SIZE*sizeof(int));
-        new_instance(data,seeds[i]);
+        new_instance(data,seeds[seed_index]);
         start = clock();
 
         merge_sort(data,0,INST_SIZE-1);
@@ -22,9 +26,15 @@ int main(void) {
         
         end = clock();
         free(data);
-        printf("SEED: %d\n",seeds[i]);
-        printf("Elapsed time: %ju -%ju = %ju ticks\n",end,start,end-start);
-        printf("Elapsed time: %8.6f seconds = %8.6e seconds \n",(double) (end-start)/CLOCKS_PER_SEC, (double)(end-start)/CLOCKS_PER_SEC);
+        #if !DEBUG
+            printf("%8.6f secs = %8.6e usecs\n",(double) (end-start)/CLOCKS_PER_SEC, (double)(end-start)/CLOCKS_PER_SEC*1.e6);
+        #endif
+
+        #if DEBUG
+            printf("SEED: %4d\t",seeds[i]);
+            printf("Elapsed time: %8.6f seconds = %8.6e useconds \n",(double) (end-start)/CLOCKS_PER_SEC, (double)(end-start)/CLOCKS_PER_SEC*1.e6);
+        #endif
+       
     }
     return 0;
 }

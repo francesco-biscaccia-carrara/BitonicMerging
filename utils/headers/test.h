@@ -9,10 +9,10 @@
 #include <string.h>
 
 #ifndef DEBUG
-#define DEBUG 1
+#define DEBUG 0
 #endif
 
-#define INST_SIZE 16
+#define INST_SIZE 33554432
 //33554432 -- 2^25 
 //67108864 -- 2^26
 //134217728 -- 2^27
