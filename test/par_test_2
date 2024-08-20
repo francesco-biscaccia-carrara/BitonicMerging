@@ -1,0 +1,14 @@
+#!/bin/bash
+#SBATCH -J parallel_test_2
+#SBATCH -o pt_2_%j.out
+#SBATCH -e pt_2_%j.err
+#SBATCH --mail-user francesco.biscacciacarrara@studenti.unipd.it 
+#SBATCH --mail-type ALL
+#SBATCH -n 2
+#SBATCH -p allgroups
+#SBATCH -t 01:30:00
+#SBATCH --mem 20G
+
+cd $SLURM_SUBMIT_DIR
+
+mpirun -np $SLURM_NTASKS ./test_par

@@ -10,8 +10,8 @@ SEQ_OBJS = sequential_test.o $(OBJS)
 PAR_OBJS = parallel_test.o $(OBJS)
 DEPS = $(wildcard $(INCDIR)/*.h)
 
-TARGET_SEQ = test_seq
-TARGET_PAR = test_par
+TARGET_SEQ = test/test_seq
+TARGET_PAR = test/test_par
 
 .PHONY: all clean
 
