@@ -26,7 +26,7 @@ int window_id_even(int rank, int l){
     return !((rank >> (l + 1)) % 2);
 }
 
-int jth_bit_rank_zero(int rank, int j){
+int jth_bit_proc_id_zero(int rank, int j){
     return !((rank >> j)%2);
 }
 

@@ -8,7 +8,7 @@ extern void merge_take_second_half(int *local_array, int *temp, int local_n);
 
 #pragma region Parallel_Utils
 extern int window_id_even(int rank, int l);
-extern int jth_bit_rank_zero(int rank, int j);
+extern int jth_bit_proc_id_zero(int rank, int j);
 #pragma endregion
 
 #endif

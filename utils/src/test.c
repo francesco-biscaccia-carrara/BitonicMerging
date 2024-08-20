@@ -1,11 +1,11 @@
 #include "../headers/test.h"
 
-int new_instance(int* data, int seed){
+int new_instance(int* data, int seed,int inst_size){
     if(data == NULL || seed < 0) return 1;
     srand(seed);
 
-    for (int i = 0; i < INST_SIZE; i++) {
-        data[i]=rand();
+    for (int i = 0; i < inst_size; i++) {
+        data[i]=rand() % inst_size;
     }
     return 0;
 }

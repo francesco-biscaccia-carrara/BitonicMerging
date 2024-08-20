@@ -12,7 +12,7 @@
 #define DEBUG 0
 #endif
 
-#define INST_SIZE 33554432
+#define INST_SIZES {33554432,67108864,-1}
 //33554432 -- 2^25 
 //67108864 -- 2^26
 //134217728 -- 2^27
@@ -21,7 +21,7 @@
 //1073741824 -- 2^30
 #define SEEDS {1,2,3,4,5,6,7,8,9,10,-1};
 
-extern int new_instance(int* data, int seed); 
+extern int new_instance(int* data, int seed,int inst_size); 
 extern int check_integrity(int* data,int size);
 
 #endif
