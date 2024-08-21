@@ -24,4 +24,5 @@ ax.set_xticklabels(x_labels)
 ax.legend()
 
 plt.tight_layout()
-plt.show()
+plt.savefig("Exe_time.png")
+plt.savefig("Exe_time.pgf",backend="pgf")
