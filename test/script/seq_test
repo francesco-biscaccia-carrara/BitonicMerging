@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J sequential_test
+#SBATCH -J MergeSort
 #SBATCH -o st_%j.out
 #SBATCH -e st_%j.err
 #SBATCH --mail-user francesco.biscacciacarrara@studenti.unipd.it 

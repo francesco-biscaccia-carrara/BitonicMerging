@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J BitonicMerge_32
+#SBATCH -J HCMerge_16
 #SBATCH -o pt_32_%j.out
 #SBATCH -e pt_32_%j.err
 #SBATCH --mail-user francesco.biscacciacarrara@studenti.unipd.it 
