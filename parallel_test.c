@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
 
     for(int size_index = 0; sizes[size_index]>0;size_index++){
         for (int seed_index = 0; seeds[seed_index] > 0; seed_index++) {
-        double start, end;
+        double start, end, comm_start, comm_end, comm_time = 0.0;
         int inst_size = sizes[size_index];
         int local_n = inst_size / num_proc;  
         int* local_data = (int*) malloc(local_n * sizeof(int));
@@ -34,9 +34,12 @@ int main(int argc, char** argv) {
             start = MPI_Wtime();  
         }
 
+        comm_start = MPI_Wtime();
         MPI_Barrier(MPI_COMM_WORLD);
         MPI_Scatter(data, local_n, MPI_INT, local_data, local_n, MPI_INT, 0, MPI_COMM_WORLD);
         MPI_Barrier(MPI_COMM_WORLD);
+        comm_end = MPI_Wtime();
+        comm_time += (comm_end - comm_start)/num_proc;
 
         merge_sort(local_data, 0, local_n - 1);
         MPI_Barrier(MPI_COMM_WORLD);
@@ -48,14 +51,16 @@ int main(int argc, char** argv) {
                 int partner = proc_id ^ (1 << j);
                 
                 int* recv_data = (int*) malloc(local_n * sizeof(int));
+
+                comm_start = MPI_Wtime();
                 MPI_Sendrecv(local_data, local_n, MPI_INT, partner, 0,
                             recv_data, local_n, MPI_INT, partner, 0,
                             MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-
                 MPI_Barrier(MPI_COMM_WORLD);
+                comm_end = MPI_Wtime();
+                comm_time += (comm_end - comm_start)/num_proc;
 
-                if((window_id_even(proc_id,l) && jth_bit_proc_id_zero(proc_id,j)) || 
-                    (!window_id_even(proc_id,l) && !jth_bit_proc_id_zero(proc_id,j))){
+                if(is_first_half(proc_id,l,j)){
                     merge_take_first_half(local_data, recv_data, local_n);
                 } else {
                     merge_take_second_half(local_data, recv_data, local_n);
@@ -66,31 +71,40 @@ int main(int argc, char** argv) {
                 }
             }
 
+            comm_start = MPI_Wtime();
             MPI_Barrier(MPI_COMM_WORLD);
             MPI_Gather(local_data, local_n, MPI_INT, data, local_n, MPI_INT, 0, MPI_COMM_WORLD);
             MPI_Barrier(MPI_COMM_WORLD);
+            comm_end = MPI_Wtime();
+            comm_time += (comm_end - comm_start)/num_proc;
 
             if (proc_id == MASTER) {
+                end = MPI_Wtime();
+
                 #if DEBUG 
-                    printf("CHECKING INTEGRITY...\n");
+                    printf("CHECKING INTEGRITY...");
                     if (check_integrity(data, inst_size)) {
                         free(data);
                         MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
                         return 1;
                     }
+                    printf("PASSED!\n");
                 #endif
 
-                end = MPI_Wtime();
+                
                 free(data);
-                double time = end - start;
+
+                double total_time = end - start;
 
                 #if !DEBUG
-                    printf("%8.6f secs = %8.6e us\n", time, time * 1e6);
+                    printf("%8.6f,%8.6f \n", total_time,comm_time);
                 #endif
 
                 #if DEBUG
                     printf("SEED: %4d\t", seeds[seed_index]);
-                    printf("Elapsed time: %8.6f seconds = %8.6e useconds\n", time, time * 1e6);
+                    printf("Elapsed time: %8.6f seconds\n", total_time);
+                    printf("\t\tCommunication time: %8.6f seconds\n", comm_time);
+                    printf("\t\tComputation time: %8.6f seconds\n", total_time-comm_time);
                 #endif
             }
 

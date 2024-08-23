@@ -22,13 +22,18 @@ void merge_take_second_half(int* locl_array, int* recv_array, int local_n) {
 
 #pragma region Parallel_Utils
 
-int window_id_even(int rank, int l){
-    return !((rank >> (l + 1)) % 2);
+int window_id_even(int proc_id, int l){
+    return !((proc_id >> (l + 1)) % 2);
 }
 
-int jth_bit_proc_id_zero(int rank, int j){
-    return !((rank >> j)%2);
+int jth_bit_proc_id_zero(int proc_id, int j){
+    return !((proc_id >> j)%2);
 }
+
+int is_first_half(int proc_id, int l, int j){
+    return (window_id_even(proc_id,l) && jth_bit_proc_id_zero(proc_id,j)) || (!window_id_even(proc_id,l) && !jth_bit_proc_id_zero(proc_id,j));
+}
+
 
 #pragma endregion
 

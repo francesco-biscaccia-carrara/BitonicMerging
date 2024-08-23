@@ -22,22 +22,23 @@ int main(void) {
         merge_sort(data,0,sizes[size_index]-1);
 
         #if DEBUG == 1 
-            printf("CHECKING INTEGRITY...\n");
+            printf("CHECKING INTEGRITY...");
             if(check_integrity(data,sizes[size_index])){
                 free(data);
                 return 1;
             }
+            printf("PASSED!\n");
         #endif
         
         end = clock();
         free(data);
         #if !DEBUG
-            printf("%8.6f secs = %8.6e usecs\n",(double) (end-start)/CLOCKS_PER_SEC, (double)(end-start)/CLOCKS_PER_SEC*1.e6);
+            printf("%8.6f\n",(double) (end-start)/CLOCKS_PER_SEC);
         #endif
 
         #if DEBUG
-            printf("SEED: %4d\t",seeds[i]);
-            printf("Elapsed time: %8.6f seconds = %8.6e useconds \n",(double) (end-start)/CLOCKS_PER_SEC, (double)(end-start)/CLOCKS_PER_SEC*1.e6);
+            printf("SEED: %4d\t",seeds[size_index]);
+            printf("Elapsed time: %8.6f seconds\n",(double) (end-start)/CLOCKS_PER_SEC);
         #endif
        
     }
