@@ -11,4 +11,4 @@
 
 cd $SLURM_SUBMIT_DIR
 
-./test_seq
+.././test_seq

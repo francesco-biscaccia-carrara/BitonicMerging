@@ -11,4 +11,4 @@
 
 cd $SLURM_SUBMIT_DIR
 
-mpirun -np $SLURM_NTASKS ./test_par
+mpirun -np $SLURM_NTASKS .././test_par
