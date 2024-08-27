@@ -26,10 +26,10 @@ This project implements a parallel sorting algorithm using MPI on a virtual hype
 ## 📈 Results
 
 ![Speedup Graph](test/results/plot/Speedup.png)
-*Speedup* $S(P)$ *vs Number of Processors*$P$
+*Speedup* $S(P)$ *vs Number of Processors* $P$
 
 ![CCR Graph](test/results/plot/CCR.png)
-*Computing-over-Communication Ratio*$CRR(P)$
+*Computing-over-Communication Ratio* $CRR(P)$
 
 ## 🚀 Getting Started
 
