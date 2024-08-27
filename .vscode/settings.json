@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "stdlib.h": "c",
-        "test.h": "c",
-        "parallel.h": "c",
-        "type_traits": "c"
-    }
-}
