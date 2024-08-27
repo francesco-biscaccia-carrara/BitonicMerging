@@ -15,7 +15,7 @@ This project implements a parallel sorting algorithm using MPI on a virtual hype
 
 - Linear speedup with increasing processor count
 - High Computing-over-Communication Ratio (CCR > 98%)
-- Efficient handling of large datasets (up to 2^30 elements)
+- Efficient handling of large datasets (up to $2^30$ elements)
 
 ## 🛠️ Implementation Details
 
