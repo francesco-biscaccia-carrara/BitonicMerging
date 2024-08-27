@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import linregress
 
-df = pd.read_csv("refined_data.csv")
+df = pd.read_csv("exe_times.csv")
 
 algorithms = df.columns[2:]
 
@@ -29,11 +29,12 @@ line = slope * x + intercept
 ax.plot(x, line, color='grey', linestyle='--',)
 
 ax.set_xlabel('Algorithm')
-ax.set_ylabel('Average Speedup')
-ax.set_title('Speedup Behaviour')
+ax.set_ylabel('Average Speedup $\hat{S(P)}$')
+ax.set_title('Speedup $S(P)$ Behaviour')
 ax.set_xticks(x)
+ax.grid(True)
 ax.set_xticklabels(algorithms)
 
 plt.tight_layout()
-plt.savefig("Avg_Speedup.png")
-plt.savefig("Avg_Speedup.pgf", backend="pgf")
+plt.savefig("plot/Avg_Speedup.png")
+plt.savefig("plot/Avg_Speedup.pgf", backend="pgf")
