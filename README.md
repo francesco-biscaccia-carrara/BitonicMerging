@@ -1,4 +1,4 @@
-# 🚀 Parallel Sorting with MPI
+# 🧮 Parallel Sorting with MPI
 
 ## Overview
 
@@ -21,7 +21,7 @@ This project implements a parallel sorting algorithm using MPI on a virtual hype
 
 - Sequential Merge Sort implemented in C
 - Parallel Bitonic Sort implemented using MPI
-- Tested on CAPRI High-Performance Computing (HPC) system
+- Tested on [CAPRI](https://capri.dei.unipd.it) High-Performance Computing (HPC) system
 
 ## 📈 Results
 
@@ -41,17 +41,22 @@ This project implements a parallel sorting algorithm using MPI on a virtual hype
    ```
 4. Run the sequential algortihm:
    ```
-   test/test_seq 
+   ./test/test_seq 
    ```
 5. Run the parallel algortihm:
    ```
-   mpirun -np <num_processors> test/test_par
+   mpirun -np <num_processors> ./test/test_par
    ```
+   
+## ⚠️ Important Notice
+
+**NOTICE**: This repository is focused on benchmark analysis. You won't see the actual sorted data here, but rather meaningful metrics and performance measurements. This approach allows us to concentrate on analyzing the efficiency and scalability of our parallel sorting implementation across various scenarios.
 
 ## 📚 Further Reading
 
 For a detailed explanation of the algorithm and performance analysis, please refer to the accompanying paper: "Parallel Computing: MPI Parallel Sorting" by Francesco Biscaccia Carrara.
 
+<!--- 
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](link-to-issues-page).
@@ -59,7 +64,7 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
+--->
 ---
 
 Made with 💻 and ☕ by Francesco Biscaccia Carrara
