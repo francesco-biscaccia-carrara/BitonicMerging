@@ -14,8 +14,8 @@ This project implements a parallel sorting algorithm using MPI on a virtual hype
 ## 📊 Performance Highlights
 
 - Linear speedup with increasing processor count
-- High Computing-over-Communication Ratio (CCR > 98%)
-- Efficient handling of large datasets (up to $2^30$ elements)
+- High Computing-over-Communication Ratio ($CCR > 98\%$)
+- Efficient handling of large datasets (up to $2^{30}$ elements)
 
 ## 🛠️ Implementation Details
 
@@ -26,15 +26,15 @@ This project implements a parallel sorting algorithm using MPI on a virtual hype
 ## 📈 Results
 
 ![Speedup Graph](test/results/plot/Speedup.png)
-*Speedup vs Number of Processors*
+*Speedup $S(P)$ vs Number of Processors $P$*
 
 ![CCR Graph](test/results/plot/CCR.png)
-*Computing-over-Communication Ratio*
+*Computing-over-Communication Ratio $CRR(P)$*
 
 ## 🚀 Getting Started
 
 1. Clone the repository
-2. Ensure MPI is installed on your system
+2. Ensure [MPI](https://www.mpi-forum.org) is installed on your system
 3. Compile the code:
    ```
    make
@@ -60,11 +60,11 @@ For a detailed explanation of the algorithm and performance analysis, please ref
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](link-to-issues-page).
-
+--->
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
---->
+This project is licensed under the MIT License - see the [LICENSE](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) file for details.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ---
 
 Made with 💻 and ☕ by Francesco Biscaccia Carrara
