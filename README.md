@@ -54,7 +54,7 @@ This project implements a parallel sorting algorithm using MPI on a virtual hype
 
 ## 📚 Further Reading
 
-For a detailed explanation of the algorithm and performance analysis, please refer to the accompanying paper: "Parallel Computing: MPI Parallel Sorting" by Francesco Biscaccia Carrara.
+For a detailed explanation of the algorithm and performance analysis, please refer to the accompanying paper: [Parallel Computing: MPI Parallel Sorting](test/results/Parallel_Computing_MPI_Parallel_Sorting.pdf) by Francesco Biscaccia Carrara.
 
 <!--- 
 ## 🤝 Contributing
