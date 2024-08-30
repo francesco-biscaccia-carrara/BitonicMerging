@@ -1,5 +1,6 @@
 # 🧮 Parallel Sorting with MPI
-![C](https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&logo=c&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![MPI](https://img.shields.io/badge/MPI-Message%20Passing%20Interface-brightgreen)
+![C](https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&logo=c&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)   
+![MPI](https://img.shields.io/badge/MPI-Message%20Passing%20Interface-brightgreen)
 ## Overview
 
 This project implements a parallel sorting algorithm using MPI on a virtual hypercube architecture. We leverage the power of distributed computing to sort large datasets efficiently.
